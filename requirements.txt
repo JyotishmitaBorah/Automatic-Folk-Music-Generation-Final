@@ -1,0 +1,9 @@
+numpy
+pandas
+matplotlib
+scipy
+torch
+librosa
+soundfile
+pretty_midi
+midi2audio
