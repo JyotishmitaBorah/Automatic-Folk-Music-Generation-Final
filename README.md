@@ -1,52 +1,45 @@
 # Automatic Folk Music Generation
 
-Research project on style-conditioned generation and thaat-level analysis of selected folk music traditions of Assam, focusing on Mising Oi Nitom and Bihu.
+This project explores the use of deep learning to generate melodies inspired by selected folk music traditions of Assam, focusing on **Mising Oi Nitom and Bihu**. It also examines the melodic characteristics of the real and generated music through pitch, interval, and Hindustani thaat-level analysis.
 
-## Current research workflow
+## About the Project
 
-The accompanying Colab notebook contains code for:
+The project uses a style-conditioned Bidirectional Long Short-Term Memory (BiLSTM) model to learn patterns from symbolic pitch and duration sequences. The trained model generates new melodies for the two folk styles, which are then compared with the original data using statistical and melodic features.
 
-- Loading the prepared symbolic pitch-duration dataset and vocabulary
-- Defining/loading and evaluating a style-conditioned BiLSTM
-- Generating folk-style symbolic melodies autoregressively
-- Rendering generated melodies to MIDI/WAV
-- Comparing real and generated melody statistics
-- Pitch-class, interval, and thaat-level pitch-affinity analysis
+The work also investigates similarities between the pitch-class distributions of the folk melodies and the pitch sets associated with Hindustani thaats. These comparisons are intended to study broad melodic affinities rather than assign an exact raag identity.
 
-## Dataset and prerequisites
+## Main Components
 
-The notebook expects the prepared files to be available in Google Drive at:
+* Symbolic pitch and duration sequence processing
+* Style-conditioned BiLSTM model training and evaluation
+* Autoregressive melody generation
+* MIDI and WAV rendering of generated melodies
+* Comparison of real and generated melody characteristics
+* Pitch-class, interval, and thaat-level analysis
 
-`MyDrive/Automatic_Folk_Music_Generation/`
+## Dataset
 
-Expected data files include:
+The experiments use 70 songs: 45 Mising Oi Nitom songs and 25 Bihu songs. The prepared dataset is divided into training, validation, and test sets and represents melodies using symbolic pitch and duration sequences.
 
-- `bilstm_data/train.npz`
-- `bilstm_data/validation.npz`
-- `bilstm_data/test.npz`
-- `bilstm_data/vocabulary.json`
+The notebook uses prepared dataset files and model artifacts stored in Google Drive. The original audio recordings are not included in this repository. Please check the relevant permissions and source terms before redistributing any recordings or derived data.
 
-Model checkpoints and experiment outputs are expected under the `models/` directory. These files are not embedded in this source-code notebook.
+## Results
 
-**Scope note:** This repository notebook starts from an already prepared symbolic dataset. It does not, by itself, reproduce the full raw-audio collection and preprocessing process from the original recordings.
+On the held-out test set, the model achieved 30.08% next-pitch accuracy and 40.02% duration accuracy. The thaat-level pitch-affinity rankings of real and generated melodies showed Spearman correlations of 0.9394 for Mising Oi Nitom and 0.9515 for Bihu.
 
-## How to use
+These results suggest that the generated melodies preserve some broad statistical and pitch-affinity characteristics of the selected folk styles, while differences in melodic movement and repetition remain.
 
-1. Open `Automatic_Folk_Music_Generation_Code.ipynb` in Google Colab.
-2. Place the expected dataset and model artifacts in the Google Drive folder shown above, or update the paths in the notebook.
-3. Run the cells in the required order, checking dependencies and input files first.
-4. Review the evaluation and analysis outputs before interpreting results.
+## Running the Notebook
 
-The notebook includes exploratory and repeated diagnostic cells from the research workflow; it has not been fully refactored into a minimal, clean pipeline.
+Open `Automatic_Folk_Music_Generation_Code.ipynb` in Google Colab. The notebook expects the prepared dataset, vocabulary, and any required model checkpoints to be available in the corresponding Google Drive folders. Update the file paths if your folder structure differs.
 
-## Dataset and audio rights
+Install the required Python packages before running the cells. Some cells are experimental and may need to be run in sequence with the required files available.
 
-The project concerns 70 songs used in the experiments (45 Mising Oi Nitom and 25 Bihu). Before publicly redistributing source audio, verify permission and licensing. Do not assume that publicly accessible YouTube recordings can be republished. Share only data and derived materials that you have the right to redistribute, with appropriate source attribution.
+## Technologies
 
-## Reported experimental results
+Python, PyTorch, NumPy, Pandas, Librosa, Matplotlib, and MIDI/WAV rendering tools.
 
-The project notes report overall held-out next-event accuracy of 30.08% for pitch and 40.02% for duration. The reported Spearman correlations between real and generated thaat-level pitch-affinity rankings are 0.9394 for Mising Oi Nitom and 0.9515 for Bihu. These are broad pitch-affinity comparisons, not proof of exact raag classification.
+## Acknowledgement
 
-## Status
+This work was carried out as part of the IKS Internship Program 2026 at the National Institute of Technology Silchar.
 
-This is a research-code release based on the Colab notebook. For full reproducibility, the prepared dataset, exact dependency versions, and any required model checkpoints must be made available separately and documented.
